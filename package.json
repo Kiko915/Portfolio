@@ -1,5 +1,6 @@
 {
-  "name": "",
+  "name": "francismistica-portfolio",
+  "author": "Francis Mistica",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,7 +12,11 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/bebas-neue": "^5.0.18",
     "astro": "^4.2.7",
+    "astro-seo": "^0.8.0",
+    "gsap": "^3.12.5",
+    "split-text-js": "^1.0.3",
     "tailwindcss": "^3.4.1"
   }
 }

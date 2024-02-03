@@ -1,4 +1,6 @@
 ---
+import { SEO } from 'astro-seo';
+
 interface Props {
 	title: string;
 }
@@ -10,11 +12,35 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="My personal portfolio website" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<SEO
+      title="Francis Mistica | Web Developer & Graphic Designer"
+      description="A heavily optimized description full of well-researched keywords."
+      openGraph={{
+        basic: {
+          title: "A Very Descriptive Title",
+          type: "A type.",
+          image: "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+        }
+      }}
+      twitter={{
+        creator: "@jonasmerlins1"
+      }}
+      extend={{
+        // extending the default meta tags
+        meta: [
+          {
+            name: "twitter:image",
+            content: "https://user-images.githubusercontent.com/5182256/131216951-8f74f425-f775-463d-a11b-0e01ad9fce8d.png",
+          },
+          { name: "twitter:title", content: "Tinker Tailor Soldier Spy" },
+          { name: "twitter:description", content: "Agent" },
+        ],
+      }}
+    />
 	</head>
 	<body>
 		<slot />

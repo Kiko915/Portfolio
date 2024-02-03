@@ -1,11 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import '@fontsource/bebas-neue';
 ---
+
+<style>
+	.animated-entry {
+		font-family: 'Bebas Neue', sans-serif;
+	}
+
+	.animated-text-entry {
+		margin: 0;
+		line-height: 0;
+		-webkit-text-stroke-width: 1px;
+  		-webkit-text-stroke-color: skyblue;
+	}
+
+
+</style>
+
 
 <Layout title="Francis Mistica">
 	<main class="flex flex-col items-center justify-center h-screen container mx-auto">
-		<h1 class="text-white font-bold uppercase md:text-3xl text-2xl text-center">Welcome to <span class="bg-gradient-to-r from-indigo-500 to-sky-400 text-transparent bg-clip-text block text-3xl md:inline shadow-lg">Francis Mistica's</span> Portfolio</h1>
+		<h1 id="textHd" class="text-white font-bold uppercase md:text-3xl text-2xl text-center">Welcome to <span class="main-hd bg-gradient-to-r from-indigo-500 to-sky-400 text-transparent bg-clip-text block text-3xl md:inline">Francis Mistica's</span> Portfolio</h1>
+
+		<div class="animated-entry text-center text-indigo-500 my-14 text-[3rem] md:text-[5rem] lg:text-[7rem]">
+			<p class="animated-text-entry ">WEB DEVELOPER</p>
+			<p class="animated-text-entry ">GRAPHIC DESIGNER</p>	
+			<p class="animated-text-entry ">UI/UX DESIGNER</p>
+			<p class="animated-text-entry ">MOTION GRAPHICS</p>
+		</div>
+
 		<div class="m-4 px-4 py-2 bg-transparent border border-gray-200 rounded text-lg opacity-75 text-center">
 		    <p class="text-gray-200">This website is currently undergoing development. In the interim, I invite you to engage with me through my social media channels, which are conveniently linked below. Thank you for your understanding and patience during this construction phase.</p>
 		</div>
@@ -28,3 +52,21 @@ import Card from '../components/Card.astro';
 		</div>
 	</main>
 </Layout>
+
+
+<script>
+	import { gsap } from "gsap";
+	import SplitTextJS from 'split-text-js'; 
+	import { TextPlugin } from "gsap/TextPlugin";
+	gsap.registerPlugin(TextPlugin);
+
+	const titles = gsap.utils.toArray(".animated-text-entry");
+	const tl = gsap.timeline({ repeat: -1});
+
+	titles.forEach(title => {
+		const splitText = new SplitTextJS(title);
+		tl
+			.from(splitText.chars, {opacity: 0, y: 80, rotateX: -120, stagger: .025}, "<")
+			.to(splitText.chars, {opacity:0, y: -80, rotateX: 	120, stagger: .025}, "<1")
+	})
+</script>
