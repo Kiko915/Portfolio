@@ -1,0 +1,70 @@
+<div class="preloader fixed h-full w-full z-[1000]" id="screen-preloader">
+    <h1 class="counter text-white font-bold md:text-[200px] text-6xl absolute bottom-0 right-0 mr-6 shadow">0</h1>
+    <div class="bar w-full h-full flex">
+        <div class="bar1 bar-child"></div>
+        <div class="bar2 bar-child"></div>
+        <div class="bar3 bar-child"></div>
+        <div class="bar4 bar-child"></div>
+        <div class="bar5 bar-child"></div>
+    </div>
+</div>
+
+<style>
+    .bar-child {
+        background-color: #454b59;
+        width: 100%;
+    }
+
+    h1 {
+      font-family:'Courier New', Courier, monospace;
+    }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("DOMContentLoaded", startLoader);
+  let currentValue = 0;
+
+  function startLoader() {
+    const counter = document.querySelector(".counter");
+    
+
+    function updateCounter() {
+      if (currentValue === 100) return;
+
+      currentValue += Math.floor(Math.random() * 10) + 1;
+
+      if (currentValue > 100) {
+        currentValue = 100;
+      }
+
+      counter.textContent = currentValue.toString() + "%";
+      let delay = Math.floor(Math.random() * 200) + 50;
+      setTimeout(updateCounter, delay);
+    }
+
+    updateCounter();
+  }
+
+  gsap.to('.counter', {
+    delay: 3.5,
+    opacity: 0,
+    duration: 0.25
+  })
+
+  gsap.to(".bar-child", {
+            duration: 1.5,
+            delay: 3.5,
+            height: 0,
+            stagger: {
+                amount: 0.5
+            },
+            ease: "power4.inOut"
+        })
+
+  gsap.to("#screen-preloader", {
+          delay: 5.2,
+          display: "none"
+        })
+</script>
